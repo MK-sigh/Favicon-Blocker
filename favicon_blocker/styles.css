@@ -1,0 +1,39 @@
+/* --- ブロック時のオーバーレイ表示 --- */
+
+.fb-blocked-placeholder {
+  position: relative !important;
+  /* はみ出し防止 */
+  overflow: hidden !important; 
+  border-radius: 8px;
+  contain: content;
+}
+
+/* 全体を覆うグレーの膜 */
+.fb-blocked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background-color: rgba(220, 220, 220, 0.9);
+  z-index: 9999;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.fb-blocked-msg-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5f6368;
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 8px;
+}

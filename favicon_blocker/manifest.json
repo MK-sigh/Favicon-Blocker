@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Favicon Blocker for Google",
+  "version": "3.1",
+  "description": "見た目が同じファビコンを一網打尽にブロックします。",
+  "permissions": [
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/search*",
+        "*://*.google.co.jp/search*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

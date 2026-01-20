@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 320px; padding: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; }
+    h2 { font-size: 16px; margin: 0 0 16px 0; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+    
+    .setting-group { margin-bottom: 20px; }
+    .label-title { font-weight: bold; font-size: 13px; display: block; margin-bottom: 6px; }
+    
+    /* モード選択 */
+    .radio-group label { display: block; margin-bottom: 4px; font-size: 13px; cursor: pointer; }
+    
+    /* テキストエリア */
+    textarea { width: 100%; height: 60px; box-sizing: border-box; font-size: 12px; border: 1px solid #ccc; border-radius: 4px; padding: 4px; }
+    
+    /* ボタン */
+    button { cursor: pointer; padding: 6px 12px; border-radius: 4px; border: 1px solid #ddd; background: #f8f9fa; }
+    button:hover { background: #e8eaed; }
+    .primary-btn { background: #1a73e8; color: white; border: none; }
+    .primary-btn:hover { background: #1557b0; }
+    
+    /* ステータス */
+    .status { color: #188038; font-size: 12px; display: none; margin-left: 10px; }
+
+    /* ブロックリスト表示エリア */
+    #blockedList {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .blocked-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .blocked-item:last-child { border-bottom: none; }
+    .blocked-item img { width: 20px; height: 20px; border-radius: 2px; }
+    .delete-btn { 
+      background: none; border: none; color: #999; font-size: 18px; padding: 0 4px; cursor: pointer; 
+    }
+    .delete-btn:hover { color: #d93025; background: none; }
+    .empty-msg { padding: 10px; font-size: 12px; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  <h2>Favicon Blocker 設定</h2>
+
+  <!-- ブロックモード設定 -->
+  <div class="setting-group">
+    <span class="label-title">ブロック時の挙動</span>
+    <div class="radio-group">
+      <label><input type="radio" name="mode" value="hidden"> 完全非表示 (A案)</label>
+      <label><input type="radio" name="mode" value="placeholder"> プレースホルダー表示 (B案)</label>
+    </div>
+  </div>
+
+  <!-- ブロックリスト管理 -->
+  <div class="setting-group">
+    <span class="label-title">ブロック中のファビコン一覧</span>
+    <ul id="blockedList">
+      <!-- JSでここにリストを追加 -->
+    </ul>
+  </div>
+
+  <!-- 許可サイト設定 -->
+  <div class="setting-group">
+    <span class="label-title">許可するサイト (URLの一部)</span>
+    <textarea id="allowedList" placeholder="例: wikipedia.org"></textarea>
+    <div style="margin-top: 8px;">
+      <button id="saveBtn" class="primary-btn">設定を保存</button>
+      <span id="status" class="status">保存完了</span>
+    </div>
+  </div>
+
+  <div class="setting-group" style="border-top: 1px solid #eee; padding-top: 10px; text-align: right;">
+    <button id="clearBlockedBtn" style="color: #d93025; font-size: 11px; border:none; background:none; text-decoration: underline;">全リストを消去</button>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
