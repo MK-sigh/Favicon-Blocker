@@ -3,10 +3,13 @@ const hashCache = new Map();
 
 // --- 右クリックメニュー作成 ---
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: "block-favicon-image",
-    title: "🚫 このファビコン（見た目）をブロック",
-    contexts: ["image"]
+  // ★修正: 重複エラーを防ぐため、既存のメニューを削除してから作成する
+  chrome.contextMenus.removeAll(() => {
+    chrome.contextMenus.create({
+      id: "block-favicon-image",
+      title: "🚫 このファビコン（見た目）をブロック",
+      contexts: ["image"]
+    });
   });
 });
 
